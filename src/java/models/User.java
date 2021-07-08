@@ -31,7 +31,7 @@ public class User implements Serializable {
         this.email = email;
     }
 
-    public boolean isActive() {
+    public boolean getActive() {
         return active;
     }
 

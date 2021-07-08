@@ -6,9 +6,9 @@ import models.User;
 import dataaccess.UserDB;
 
 public class UserService {
-    public List<User> getAll(String email) throws Exception {
+    public  List<User> getAll() throws Exception {
         UserDB userDB = new UserDB();
-        List<User> users = userDB.getAll(email);
+        List<User> users = userDB.getAll();
         return users;
     }
     public User get(String email) throws Exception {
@@ -16,8 +16,8 @@ public class UserService {
         User user = userDB.get(email);
         return user;
     }
-    public void insert(String email, String firstName, String lastName, String password, int roleId) throws Exception {
-        User user = new User(email, true , firstName, lastName, password, roleId);
+    public void insert(String email, Boolean active, String firstName, String lastName, String password, int roleId) throws Exception {
+        User user = new User(email, active , firstName, lastName, password, roleId);
         UserDB userDB = new UserDB();
         userDB.insert(user);
     }
