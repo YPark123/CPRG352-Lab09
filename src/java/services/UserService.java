@@ -16,15 +16,16 @@ public class UserService {
         User user = userDB.get(email);
         return user;
     }
+
     public void insert(String email, Boolean active, String firstName, String lastName, String password, int roleId) throws Exception {
         User user = new User(email, active , firstName, lastName, password, roleId);
         UserDB userDB = new UserDB();
         userDB.insert(user);
     }
     
-    public void update(String email, boolean isActive, String firstName, String lastName, String password, int roleId) throws Exception {
+    public void update(String email, boolean active, String firstName, String lastName, String password, int roleId) throws Exception {
         UserDB db = new UserDB();
-        User user = new User(email, isActive, firstName, lastName, password, roleId);
+        User user = new User(email, active, firstName, lastName, password, roleId);
         db.update(user);
     }
     

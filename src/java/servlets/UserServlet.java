@@ -27,6 +27,26 @@ public class UserServlet extends HttpServlet {
             Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        String action = request.getParameter("action");
+        if (action != null && action.equals("edit")) {
+            try {
+                String email = (String) request.getParameter("email");
+                User user = us.get(email);
+                request.setAttribute("selectedUser", user);
+            } catch (Exception ex) {
+                Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+        if (action != null && action.equals("delete")) {
+            try {
+                String email = (String) request.getParameter("email");
+                us.delete(email);
+            } catch (Exception ex) {
+                Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+      
          getServletContext().getRequestDispatcher("/WEB-INF/users.jsp").forward(request, response);
 
     }
@@ -46,24 +66,16 @@ public class UserServlet extends HttpServlet {
         String lastName = request.getParameter("last_name");
         String password = request.getParameter("password");
         boolean active = true;
-        int role = 1;
+        int role = Integer.parseInt(request.getParameter("role"));
         
         try {
             switch (action) {
                 case "add":
                     us.insert(email, active, firstName, lastName, password, role);
+                    break;             
+                case "update":
+                    us.update(email, active, firstName, lastName, password, role);
                     break;
-                
-                case "edit":
-                    // if click edit, add user changes to edit user
-                    break;    
-                    
-                case "save":
-                    us.update(email,active,firstName, lastName, password, role);
-                    break;
-                
-                case "delete":
-                    us.delete(email);
             }          
         }
         catch (Exception ex) {
