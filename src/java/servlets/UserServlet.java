@@ -65,7 +65,7 @@ public class UserServlet extends HttpServlet {
         String firstName = request.getParameter("first_name");
         String lastName = request.getParameter("last_name");
         String password = request.getParameter("password");
-        boolean active = true;
+        boolean active =Boolean.parseBoolean(request.getParameter("active") );
         int role = Integer.parseInt(request.getParameter("role"));
         
         try {

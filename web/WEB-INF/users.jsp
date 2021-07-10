@@ -47,7 +47,7 @@
                     <option value="2">regular user</option>
                     <option value="3">company admin</option>
                 </select>
-                active <input type="checkbox" name="active" checked="checked"><br>
+                active <input type="checkbox" name="active" value="true" checked="checked"><br>
                 <input type="hidden" name="action" value="add">
                 <input type="submit" value="Save">
             </form>
@@ -65,7 +65,7 @@
                     <option value="2">regular user</option>
                     <option value="3">company admin</option>
                 </select>
-                active<input type="checkbox" name="active" checked="checked"><br>
+                active<input type="checkbox" name="active" value="true" checked="checked"><br>
                 <input type="hidden" name="email" value="${selectedUser.email}">
                 <input type="hidden" name="action" value="update">
                 <input type="submit" value="Save">
