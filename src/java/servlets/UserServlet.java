@@ -22,7 +22,7 @@ public class UserServlet extends HttpServlet {
 
         try {
             List<User> users = us.getAll();
-            request.setAttribute("users", users);
+            request.setAttribute("users", users);         
         } catch (Exception ex) {
             Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -33,12 +33,13 @@ public class UserServlet extends HttpServlet {
                 String email = (String) request.getParameter("email");
                 User user = us.get(email);
                 request.setAttribute("selectedUser", user);
+                
             } catch (Exception ex) {
                 Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         
-        if (action != null && action.equals("delete")) {
+         if (action != null && action.equals("delete")) {
             try {
                 String email = (String) request.getParameter("email");
                 us.delete(email);
@@ -46,8 +47,7 @@ public class UserServlet extends HttpServlet {
                 Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-      
-         getServletContext().getRequestDispatcher("/WEB-INF/users.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/WEB-INF/users.jsp").forward(request, response);
 
     }
     
@@ -72,10 +72,12 @@ public class UserServlet extends HttpServlet {
             switch (action) {
                 case "add":
                     us.insert(email, active, firstName, lastName, password, role);
-                    break;             
+                    break;
+                    
                 case "update":
                     us.update(email, active, firstName, lastName, password, role);
-                    break;
+                    break;      
+
             }          
         }
         catch (Exception ex) {

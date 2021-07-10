@@ -13,29 +13,27 @@
         <title>Users</title>
     </head>
     <body>
-        <form action="user" method="POST">
-            <h1>Manage Users</h1>
-             <table border="1" cellpadding="5">
+        <h1>Manage Users</h1>
+         <table border="1" cellpadding="5">
+            <tr>
+                <th>Email</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Role</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            <c:forEach items="${users}" var="user">
                 <tr>
-                    <th>Email</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Role</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
+                    <td>${user.email}</td>
+                    <td>${user.firstName}</td>
+                    <td>${user.lastName}</td>
+                    <td>${user.roleName}</td>
+                    <td><a href="user?action=edit&amp;email=${user.email}">Edit</a></td>
+                    <td><a href="user?action=delete&amp;email=${user.email}">Delete</a></td>
                 </tr>
-                <c:forEach items="${users}" var="user">
-                    <tr>
-                        <td>${user.email}</td>
-                        <td>${user.firstName}</td>
-                        <td>${user.lastName}</td>
-                        <td>${user.role}</td>
-                        <td><a href="user?action=edit&amp;email=${user.email}">Edit</a></td>
-                        <td><a href="user?action=delete&amp;email=${user.email}">Delete</a></td>
-                    </tr>
-                </c:forEach>         
-            </table>
-        </form>
+            </c:forEach>         
+        </table>
  
         <c:if test="${selectedUser eq null}">   
             <form action="user" method="POST">
@@ -49,7 +47,7 @@
                     <option value="2">regular user</option>
                     <option value="3">company admin</option>
                 </select>
-                <input type="checkbox" name="active" checked="checked"><br>
+                active <input type="checkbox" name="active" checked="checked"><br>
                 <input type="hidden" name="action" value="add">
                 <input type="submit" value="Save">
             </form>
@@ -67,7 +65,7 @@
                     <option value="2">regular user</option>
                     <option value="3">company admin</option>
                 </select>
-                <input type="checkbox" name="active" checked="checked"><br>
+                active<input type="checkbox" name="active" checked="checked"><br>
                 <input type="hidden" name="email" value="${selectedUser.email}">
                 <input type="hidden" name="action" value="update">
                 <input type="submit" value="Save">

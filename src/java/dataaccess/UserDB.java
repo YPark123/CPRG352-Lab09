@@ -17,7 +17,7 @@ public class UserDB {
         PreparedStatement ps = null;
         ResultSet rs = null;
         
-        String sql = "SELECT * FROM user";
+        String sql = "SELECT email, active, first_name, last_name, password, role_name FROM user, role where user.role = role.role_id";
         
         try {
             ps = con.prepareStatement(sql);
@@ -28,9 +28,9 @@ public class UserDB {
                 String firstName = rs.getString(3);
                 String lastName = rs.getString(4);
                 String password = rs.getString(5);
-                int role = rs.getInt(6);
+                String roleName = rs.getString(6);
                 
-                User user = new User(email, active, firstName, lastName, password, role);
+                User user = new User(email, active, firstName, lastName, password, roleName);
                 users.add(user);
             }
         } finally {
