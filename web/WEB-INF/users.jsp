@@ -11,6 +11,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Users</title>
+        <link  rel="stylesheet" href="<c:url value="/main.css" />" type="text/css">
     </head>
     <body>
         <h1>Manage Users</h1>
@@ -35,7 +36,7 @@
             </c:forEach>         
         </table>
  
-        <c:if test="${selectedUser eq null}">   
+        <c:if test="${selectedUser eq null}">  <br> 
             <form action="user" method="POST">
                 <h1>Add User</h1>
                 <input type="text" name="email" placeholder="Email"><br>
@@ -46,8 +47,8 @@
                     <option value="1">system admin</option>
                     <option value="2">regular user</option>
                     <option value="3">company admin</option>
-                </select>
-                active <input type="checkbox" name="active" value="true" checked="checked"><br>
+                </select><br>
+                <input type="checkbox" name="active" value="true" checked="checked" class="checkbox">active <br>
                 <input type="hidden" name="action" value="add">
                 <input type="submit" value="Save">
             </form>

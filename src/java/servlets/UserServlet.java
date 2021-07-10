@@ -38,15 +38,21 @@ public class UserServlet extends HttpServlet {
                 Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
-         if (action != null && action.equals("delete")) {
+        if (action != null && action.equals("delete")) {
             try {
-                String email = (String) request.getParameter("email");
+                 String email = (String) request.getParameter("email");
                 us.delete(email);
+                List<User> users = us.getAll();
+                request.setAttribute("users", users);
+                
+            getServletContext().getRequestDispatcher("/WEB-INF/users.jsp").forward(request, response);
+            return;
+                
             } catch (Exception ex) {
                 Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+         
         getServletContext().getRequestDispatcher("/WEB-INF/users.jsp").forward(request, response);
 
     }
@@ -90,7 +96,16 @@ public class UserServlet extends HttpServlet {
         } catch (Exception ex) {
             Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
+       if (action != null && action.equals("delete")) {
+            try {
+                 email = (String) request.getParameter("email");
+                us.delete(email);
+                getServletContext().getRequestDispatcher("/WEB-INF/users.jsp").forward(request, response);
+                
+            } catch (Exception ex) {
+                Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
         getServletContext().getRequestDispatcher("/WEB-INF/users.jsp").forward(request, response);
 
     }
