@@ -72,7 +72,9 @@
                 <input type="submit" value="Save">
             </form>
         </c:if>
-    
+    <c:if test="${errorMssg}">
+                <p>Any input cannot be empty.</p>
+            </c:if>
     
     </body>
 </html>

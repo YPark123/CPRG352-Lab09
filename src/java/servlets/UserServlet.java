@@ -77,12 +77,18 @@ public class UserServlet extends HttpServlet {
         try {
             switch (action) {
                 case "add":
+                    if(email==null|| firstName==null || lastName==null|| password==null ||email.equals("")|| firstName.equals("") || lastName.equals("")|| password.equals("")){
+                    request.setAttribute("errorMssg",true);}
+                    else{
                     us.insert(email, active, firstName, lastName, password, role);
-                    break;
+                    break;}
                     
                 case "update":
+                    if(email==null|| firstName==null || lastName==null|| password==null ||email.equals("")|| firstName.equals("") || lastName.equals("")|| password.equals("")){
+                    request.setAttribute("errorMssg",true);}
+                    else{
                     us.update(email, active, firstName, lastName, password, role);
-                    break;      
+                    break;   }   
 
             }          
         }
