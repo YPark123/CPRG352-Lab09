@@ -31,7 +31,7 @@
                     <td>${user.lastName}</td>
                     <td>${user.roleName}</td>
                     <td><a href="user?action=edit&amp;email=${user.email}">Edit</a></td>
-                    <td><a href="user?action=delete&amp;email=${user.email}">Delete</a></td>
+                    <td><a href="user?action=delete&amp;email=${user.email}" >Delete</a></td>
                 </tr>
             </c:forEach>         
         </table>
@@ -50,11 +50,12 @@
                 </select><br>
                 <input type="checkbox" name="active" value="true" checked="checked" class="checkbox">active <br>
                 <input type="hidden" name="action" value="add">
-                <input type="submit" value="Save">
+                <input type="submit" value="Save" class="button">
+                <br>
             </form>
         </c:if>
 
-        <c:if test="${selectedUser ne null}">
+        <c:if test="${selectedUser ne null}">  <br> 
             <form action="user" method="POST">
                 <h1>Edit User</h1>
                 <input type="text" name="email" value="${selectedUser.email}" readonly="readonly"><br>
@@ -66,14 +67,16 @@
                     <option value="2">regular user</option>
                     <option value="3">company admin</option>
                 </select>
-                active<input type="checkbox" name="active" value="true" checked="checked"><br>
+                <br>
+                <input type="checkbox" name="active" value="true" checked="checked">active<br>
                 <input type="hidden" name="email" value="${selectedUser.email}">
                 <input type="hidden" name="action" value="update">
-                <input type="submit" value="Save">
+                <input type="submit" value="Save" class="button">
+                <br>
             </form>
         </c:if>
     <c:if test="${errorMssg}">
-                <p>Any input cannot be empty.</p>
+                <p align="center">Any input cannot be empty.</p>
             </c:if>
     
     </body>
